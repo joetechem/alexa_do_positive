@@ -6,7 +6,7 @@ Intents supported:
     Open
     GetHelp
     Stop
-    DoPositive
+    DoGood
     
 """
 
@@ -49,17 +49,17 @@ def build_response(session_attributes, speechlet_response):
 
 # --------------- Your functions to implement your intents ------------------
 ANODE_ACTIONS = {
-    "Hold the door open for someone today.": "Hold the door open for someone today.",
-    "Give someone a compliment.": "Give someone a compliment.",
-    "Get your body moving. Do some form of exercise!": "Get your body moving. Whatever you are able to do just get moving! From jumping jacks to yard work. Whatever you decide, Exercising can help offset depression, anxiety, and stress.",
-    "Listen to or read a positive or uplifting message": "Listen or read a positive message, or has uplifting content. The variety of subject matter, the better.",
-    "Eat some veggies today!": "Eat a serving of at least two veggies today",
-    "Thank a person that has helped you.": "Think about how a person has helped you in some way. This could either be a friend, family member, colleague, teacher, or even a pet. And go ahead and thank them. This can go a long way in making another feel good.",
-    "Take a cold shower!": "Take a cold shower. Yes. Cold. Studies show, taking a cold shower can increase oxygen intake, alertness, and overall physical and mental wellness. One study showed, routine showers can help treat symptoms of depression. Go ahead. Jump in!",
-    "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.",
-    "Complete the most important thing on your to-do list.": "Complete the most important thing on your to do list.",
-    "Stretch! Hold your stretch for 30 seconds!": "Stretch. Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself, but alas. I am only hardware and software.",
-    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled."
+    "Hold the door open for someone today.": "<speak>Hold the door open for someone today.</speak>",
+    "Give someone a compliment.": "<speak>Give someone a compliment.</speak>",
+    "Get your body moving. Do some form of exercise!": "<speak>Get your body moving. Whatever you are able to do just get moving! From jumping jacks to yard work. Whatever you decide, Exercising can help offset depression, anxiety, and stress.</speak>",
+    "Listen to or read a positive or uplifting message": "<speak>Listen or read a positive message, or has uplifting content. The variety of subject matter, the better.</speak>",
+    "Eat some veggies today!": "<speak>Eat a serving of at least two veggies today</speak>",
+    "Thank a person that has helped you.": "<speak>Think about how a person has helped you in some way. This could either be a friend, family member, colleague, teacher, or even a pet. And go ahead and thank them. This can go a long way in making another feel good.</speak>",
+    "Take a cold shower!": "<speak>Take a cold shower. Yes. Cold. Studies show, taking a cold shower can increase oxygen intake, alertness, and overall physical and mental wellness. One study showed, routine showers can help treat symptoms of depression. Go ahead. Jump in!</speak>",
+    "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"<speak>Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.</speak>",
+    "Complete the most important thing on your to-do list.": "<speak>Complete the most important thing on your to do list.",
+    "Stretch! Hold your stretch for 30 seconds!": "<speak>Stretch. Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself, but alas. I am only hardware and software.</speak>",
+    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "<speak>Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled.</speak>"
     }
 
 card_key = random.choice(ANODE_ACTIONS.keys())
@@ -145,7 +145,7 @@ def on_intent(intent_request, session):
 
     # Dispatch to skill's intent handlers
 
-    if intent_name == "DoPositive":
+    if intent_name == "DoGood":
         return anode_action(intent, session)
     elif intent_name == "Stop":
         return stop(intent, session)
