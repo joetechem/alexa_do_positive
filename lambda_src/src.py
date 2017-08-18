@@ -62,8 +62,15 @@ ANODE_ACTIONS = {
     "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "<speak>Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled.</speak>"
     }
 
-card_key = random.choice(ANODE_ACTIONS.keys())
-speech_value = random.choice(ANODE_ACTIONS.values())
+# Having as variables (below) returns the same results each time,
+# Though the card and speech output are the same pull.
+
+# Try using conditions -->
+# if speech_value = ANODE_ACTIONS[value0]
+#   card_value = ANODE_ACTIONS[key0]
+
+#card_key = random.choice(ANODE_ACTIONS.keys())
+#speech_value = random.choice(ANODE_ACTIONS.values())
 
 def anode_action(intent, session):
     session_attributes = {}
