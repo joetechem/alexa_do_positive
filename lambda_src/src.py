@@ -1,7 +1,9 @@
 import random
 
 """
-Simple Python Lambda function to realy a positive task to perform...
+Simple Python Lambda function to relay a positive task to perform to enlighten the spirits of the individual,
+or someone around them.
+
 Intents supported:
     Open
     GetHelp
@@ -49,44 +51,40 @@ def build_response(session_attributes, speechlet_response):
 
 # --------------- Your functions to implement your intents ------------------
 ANODE_ACTIONS = {
-    "Hold the door open for someone today.": "<speak>Hold the door open for someone today.</speak>",
-    "Give someone a compliment.": "<speak>Give someone a compliment.</speak>",
-    "Get your body moving. Do some form of exercise!": "<speak>Get your body moving. Whatever you are able to do just get moving! From jumping jacks to yard work. Whatever you decide, Exercising can help offset depression, anxiety, and stress.</speak>",
-    "Listen to or read a positive or uplifting message": "<speak>Listen or read a positive message, or has uplifting content. The variety of subject matter, the better.</speak>",
-    "Eat some veggies today!": "<speak>Eat a serving of at least two veggies today</speak>",
-    "Thank a person that has helped you.": "<speak>Think about how a person has helped you in some way. This could either be a friend, family member, colleague, teacher, or even a pet. And go ahead and thank them. This can go a long way in making another feel good.</speak>",
-    "Take a cold shower!": "<speak>Take a cold shower. Yes. Cold. Studies show, taking a cold shower can increase oxygen intake, alertness, and overall physical and mental wellness. One study showed, routine showers can help treat symptoms of depression. Go ahead. Jump in!</speak>",
-    "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"<speak>Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.</speak>",
-    "Complete the most important thing on your to-do list.": "<speak>Complete the most important thing on your to do list.",
-    "Stretch! Hold your stretch for 30 seconds!": "<speak>Stretch. Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself, but alas. I am only hardware and software.</speak>",
-    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "<speak>Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled.</speak>"
+    "Hold the door open for someone today.": "Hold the door open for someone today.",
+    "Give someone a compliment.": "Give someone a compliment.",
+    "Get your body moving. Do some form of exercise!": "Get your body moving. Whatever you are able to do just get moving! From jumping jacks to yard work. Whatever you decide, Exercising can help offset depression, anxiety, and stress.",
+    "Listen to or read a positive or uplifting message": "Listen or read a positive message, or has uplifting content. The variety of subject matter, the better.",
+    "Eat some veggies today!": "Eat a serving of at least two veggies today.",
+    "Thank a person that has helped you.": "Think about how a person has helped you in some way. This could either be a friend, family member, colleague, teacher, or even a pet. And go ahead and thank them. This can go a long way in making another feel good.",
+    "Take a cold shower!": "Take a cold shower. Yes. Cold. Studies show, taking a cold shower can increase oxygen intake, alertness, and overall physical and mental wellness. One study showed, routine showers can help treat symptoms of depression. Go ahead. Jump in!",
+    "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"<speak>Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.",
+    "Complete the most important thing on your to-do list.": "Complete the most important thing on your to do list, right now.",
+    "Stretch! Hold your stretch for 30 seconds!": "Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself, but alas. I consist of hardware and software.",
+    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "<speak>Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled.",
+    "Practice good hygiene! Brush and floss your teeth.": "Practice good hygiene. Bacteria in the mouth enters the blood stream. and causes the immune system to work harder; making you more suceptible to other health problems. So, go ahead and brush and floss your teeth."
     }
 
-# Having as variables (below) returns the same results each time,
-# Though the card and speech output are the same pull.
-
-# Try using conditions -->
-# if speech_value = ANODE_ACTIONS[value0]
-#   card_value = ANODE_ACTIONS[key0]
-
-#card_key = random.choice(ANODE_ACTIONS.keys())
-#speech_value = random.choice(ANODE_ACTIONS.values())
-
+    
 def anode_action(intent, session):
     session_attributes = {}
     reprompt_text = None
     speech_output = ""
     should_end_session = True
-
+    
+#    card_key = random.choice(ANODE_ACTIONS.keys())
+    
     speech_value = random.choice(ANODE_ACTIONS.values())
+    speech_value = str(speech_value)
     speech_to_card = [speech_value]
+    
     card_key = speech_to_card[0]
     card_key = str(card_key)
     card_output = "" + card_key
-    speech_output = speech_value
+    speech_output = "<speak>" + speech_value + "</speak>"
 
     return build_response(session_attributes, build_speechlet_response
-                          ("Here's your Positive Tip", card_output, speech_output, reprompt_text, should_end_session))
+                          ("Daily Positive Tip", card_output, speech_output, reprompt_text, should_end_session))
 
                           
 def stop(intent, session):
@@ -96,7 +94,7 @@ def stop(intent, session):
     should_end_session = True
     
     card_output = "Think positive! Have a nice day!"
-    speech_output = "<speak>Thank you for asking Do Positive. Have a nice day!</speak>"
+    speech_output = "<speak>Thank you for asking Good Actions. Have a nice day!</speak>"
 
     return build_response(session_attributes, build_speechlet_response
                           ("Session Ended", card_output, speech_output, reprompt_text, should_end_session))
@@ -128,7 +126,7 @@ def on_launch(launch_request, session):
     
     # Dispatch to skill's launch
     return build_response({},build_speechlet_response(
-        "Do Positive", "Welcome to the Amazon Alexa skill, Do Positive!", "<speak>Welcome to the Amazon Alexa skill, Do Positive. I'll give you a suggestion to do something positive to help you or someone around you think positive! Just ask me for a Positive Action.</speak>","",False))
+        "Do Positive", "Welcome to the Amazon Alexa skill, Good Actions!", "<speak>Welcome to the Amazon Alexa skill, Good Actions. I'll give you a suggestion to do something good today. Which may help you or someone around you think positive! Just ask me for a positive action or task.</speak>","",False))
 
 
 def get_help(intent, session):
@@ -139,7 +137,7 @@ def get_help(intent, session):
     should_end_session = False
     
     card_output = "Just ask: Give me a positive action or task "
-    speech_output = "<speak>Ask for or tell me to say a positive action. And I'll suggest a positive task for you.</speak>"
+    speech_output = "<speak>Ask for. Or tell me to say a positive action. And I'll suggest a positive task for you to complete today.</speak>"
 
     return build_response(session_attributes, build_speechlet_response
                           ("What to Ask", card_output, speech_output, reprompt_text, should_end_session))

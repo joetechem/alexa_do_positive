@@ -32,7 +32,8 @@ ANODE_ACTIONS2 = {
     "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.",
     "Complete the most important thing on your to-do list.": "Complete the most important thing on your to do list.",
     "Stretch! Hold your stretch for 30 seconds!": "Stretch. Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself, but alas. I am only hardware and software.",
-    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled."
+    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled.",
+    "Practice good hygiene! Brush and floss your teeth.": "<speak>Practice good hygiene. Bacteria in the mouth enters the blood stream. and causes the immune system to work harder; making you more suceptible to other health problems. So, go ahead and brush and floss your teeth.</speak>"
     }
 
 speech_key = random.choice(ANODE_ACTIONS2.values())
@@ -40,8 +41,14 @@ speech_key = random.choice(ANODE_ACTIONS2.values())
 speech_to_card = [speech_key]
 card_key = speech_to_card[0]
 
+##""" Reversing speech and output order to deal with speech tags. """
+##card_key = random.choice(ANODE_ACTIONS2.keys())
+##
+##card_to_speech = [card_key]
+##speech_key = card_to_speech[0]
 
-print("\nSPEECH_OUTPUT: " + speech_key)
+
+print("\nSPEECH_OUTPUT: " + "<speak>" + speech_key + "</speak>")
 
 print("\nCARD OUTPUT: " + card_key)
 ##print(random.choice(ANODE_ACTIONS2.keys()))
