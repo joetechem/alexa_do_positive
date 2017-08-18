@@ -37,7 +37,13 @@ ANODE_ACTIONS2 = {
 
 speech_key = random.choice(ANODE_ACTIONS2.values())
 
-print(speech_key)
+speech_to_card = [speech_key]
+card_key = speech_to_card[0]
+
+
+print("\nSPEECH_OUTPUT: " + speech_key)
+
+print("\nCARD OUTPUT: " + card_key)
 ##print(random.choice(ANODE_ACTIONS2.keys()))
 ##for key, value in ANODE_ACTIONS2.items():
 ##    print(key)

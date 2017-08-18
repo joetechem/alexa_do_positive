@@ -78,9 +78,10 @@ def anode_action(intent, session):
     speech_output = ""
     should_end_session = True
 
-    card_key = random.choice(ANODE_ACTIONS.keys())
     speech_value = random.choice(ANODE_ACTIONS.values())
-
+    speech_to_card = [speech_value]
+    card_key = speech_to_card[0]
+    card_key = str(card_key)
     card_output = "" + card_key
     speech_output = speech_value
 
