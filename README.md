@@ -1,2 +1,2 @@
 # do-positive
-An Alexa skill suggesting positive actions/task to perform
+An Alexa skill suggesting positive actions/tasks to perform
