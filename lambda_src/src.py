@@ -72,7 +72,7 @@ def anode_action(intent, session):
     should_end_session = True
 
     card_output = "" + card_key
-    speech_output = "<speak>Perform this positive action.</speak>" + speech_value
+    speech_output = speech_value
 
     return build_response(session_attributes, build_speechlet_response
                           ("Here's your Positive Tip", card_output, speech_output, reprompt_text, should_end_session))
