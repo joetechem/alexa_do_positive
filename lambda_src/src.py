@@ -85,7 +85,7 @@ def stop(intent, session):
     should_end_session = True
     
     card_output = "Think positive! Have a nice day!"
-    speech_output = "<speak>Thank you for asking Positive Actions. Have a nice day!</speak>"
+    speech_output = "<speak>Thank you for asking Do Positive. Have a nice day!</speak>"
 
     return build_response(session_attributes, build_speechlet_response
                           ("Session Ended", card_output, speech_output, reprompt_text, should_end_session))
