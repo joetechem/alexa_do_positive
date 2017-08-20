@@ -4,6 +4,8 @@ import random
 Simple Python Lambda function to relay a positive task to perform to enlighten the spirits of the individual,
 or someone around them.
 
+GitHub repo: https://github.com/joetechem/good_actor_alexa_skill
+
 Intents supported:
     Open
     GetHelp
@@ -49,20 +51,20 @@ def build_response(session_attributes, speechlet_response):
     }
 
 
-# --------------- Your functions to implement your intents ------------------
+# --------------- functions to implement the intents ------------------
 ANODE_ACTIONS = {
     "Hold the door open for someone today.": "Hold the door open for someone today.",
     "Give someone a compliment.": "Give someone a compliment.",
     "Get your body moving. Do some form of exercise!": "Get your body moving. Whatever you are able to do just get moving! From jumping jacks to yard work. Whatever you decide, Exercising can help offset depression, anxiety, and stress.",
-    "Listen to or read a positive or uplifting message": "Listen or read a positive message, or has uplifting content. The variety of subject matter, the better.",
+    "Listen to or read a positive or uplifting message": "Listen to, or read a positive message, or has uplifting content. The variety of subject matter, the better. Share what you heard or read to someone else.",
     "Eat some veggies today!": "Eat a serving of at least two veggies today.",
-    "Thank a person that has helped you.": "Think about how a person has helped you in some way. This could either be a friend, family member, colleague, teacher, or even a pet. And go ahead and thank them. This can go a long way in making another feel good.",
-    "Take a cold shower!": "Take a cold shower. Yes. Cold. Studies show, taking a cold shower can increase oxygen intake, alertness, and overall physical and mental wellness. One study showed, routine showers can help treat symptoms of depression. Go ahead. Jump in!",
-    "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"<speak>Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.",
+    "Thank a person that has helped you.": "Think about how a person has helped you in some way. This could either be a friend, family member, colleague, teacher, or even a pet. And go ahead and thank them. Thank them by emailing them, mailing them a thank you card, thanking them directly, or if it is your pet you are thanking, give them some love! This can go a long way in making another. FEEL GOOD!",
+    "Take a cold shower!": "Take a cold shower. Yes. Cold. Studies show, taking a cold shower can increase oxygen intake, alertness, and overall physical and mental wellness. In one study, routine showers can help treat symptoms of depression. Go ahead, jump in!",
+    "Think about your life goals today, and everyday. Practice in thought, makes perfect.":"Think about your life goals. Do this not only after listening to my speech output, but everyday. Just like practice, if you follow a simple pattern, you can achieve what you want.",
     "Complete the most important thing on your to-do list.": "Complete the most important thing on your to do list, right now.",
-    "Stretch! Hold your stretch for 30 seconds!": "Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself, but alas. I consist of hardware and software.",
-    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "<speak>Take a deep breath. Hold it for ten seconds. Then exhale for twice the amount you inhaled.",
-    "Practice good hygiene! Brush and floss your teeth.": "Practice good hygiene. Bacteria in the mouth enters the blood stream. and causes the immune system to work harder; making you more suceptible to other health problems. So, go ahead and brush and floss your teeth."
+    "Stretch! Hold your stretch for 30 seconds!": "Take a moment to stretch. Hold that stretch for at least thirty seconds. This will increase blood flow and oxygen intake. Which are good things. I would stretch myself. But alas. I consist of hardware and software.",
+    "Take a deep breath. Exhale for twice as long as it took you to inhale your breath.": "Take a deep breath. Hold it for ten seconds. Then, exhale for twice the amount of time you inhaled that breath.",
+    "Practice good hygiene! Brush and floss your teeth.": "Practice good hygiene. Bacteria in the mouth has easy access to the blood stream and causes the immune system to work harder; making you more suceptible to a range of health problems. So, brush and floss your teeth today. Be crazy, and do it more than once."
     }
 
     
@@ -94,7 +96,7 @@ def stop(intent, session):
     should_end_session = True
     
     card_output = "Think positive! Have a nice day!"
-    speech_output = "<speak>Thank you for asking Good Actions. Have a nice day!</speak>"
+    speech_output = "<speak>Thank you for asking Good Actor. Have a nice day!</speak>"
 
     return build_response(session_attributes, build_speechlet_response
                           ("Session Ended", card_output, speech_output, reprompt_text, should_end_session))
@@ -102,7 +104,7 @@ def stop(intent, session):
 
 def handle_session_end_request():
     card_title = "Session Ended"
-    speech_output = "Thank you for asking Do Positive."
+    speech_output = "Thank you for asking Good Actor."
     should_end_session = True
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
@@ -126,7 +128,7 @@ def on_launch(launch_request, session):
     
     # Dispatch to skill's launch
     return build_response({},build_speechlet_response(
-        "Do Positive", "Welcome to the Amazon Alexa skill, Good Actions!", "<speak>Welcome to the Amazon Alexa skill, Good Actions. I'll give you a suggestion to do something good today. Which may help you or someone around you think positive! Just ask me for a positive action or task.</speak>","",False))
+        "Do Positive", "Welcome to the Amazon Alexa skill, Good Actor! Once you have completed your positive challenge, share it on social media: #GoodActorSkill", "<speak>Welcome to the Amazon Alexa skill, Good Actor. I'll give you a suggestion to do some good today. Which may help you or someone around you think positive! Just say. Give me a positive challenge. or task to perform. And complete this challenge. Before the end of the day. Share your positive accomplishment and use the hashtag. Good Actor Skill.</speak>","",False))
 
 
 def get_help(intent, session):
@@ -137,7 +139,7 @@ def get_help(intent, session):
     should_end_session = False
     
     card_output = "Just ask: Give me a positive action or task "
-    speech_output = "<speak>Ask for. Or tell me to say a positive action. And I'll suggest a positive task for you to complete today.</speak>"
+    speech_output = "<speak>Ask for. Or tell me to say a positive action. And I'll challenge you to a positive task to complete today.</speak>"
 
     return build_response(session_attributes, build_speechlet_response
                           ("What to Ask", card_output, speech_output, reprompt_text, should_end_session))
@@ -184,15 +186,6 @@ def lambda_handler(event, context):
     """
     logger.info("event.session.application.applicationId=" +
           event['session']['application']['applicationId'])
-
-    """
-    Uncomment this if statement and populate with skill's application ID to
-    prevent someone else from configuring a skill that sends requests to this
-    function.
-    """
-    # if (event['session']['application']['applicationId'] !=
-    #         "amzn1.echo-sdk-ams.app.[unique-value-here]"):
-    #     raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
         on_session_started({'requestId': event['request']['requestId']},
